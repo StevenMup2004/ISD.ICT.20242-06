@@ -21,7 +21,7 @@ This repository contains the Capstone Project for the ITSS course (IT4549E), dev
 - **Vũ Hải Đăng** - View product detail (Customer/Product Manager)
 - **Lê Đại Lâm** - Add/Update product (Product Manager)
 - **Phạm Thành Nam** - Place order (Customer)
-- **Bùi Xuân Sơn** (20226065) - Place rush order (Customer)
+- **Bùi Xuân Sơn** - Place rush order (Customer)
 
 
 
