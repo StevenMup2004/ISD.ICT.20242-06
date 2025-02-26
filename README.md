@@ -4,7 +4,7 @@
 
 ### 1. Introduction
 
-This repository contains the Capstone Project for the ITSS course (IT4549E), developed by Team ISD.ICT.20242-06
+This repository contains the Capstone Project for the ITSS course (IT4549E), developed by **Team ISD.ICT.20242-06**
 
 ### 2. Team Members
 
