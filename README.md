@@ -17,11 +17,11 @@ This repository contains the Capstone Project for the ITSS course (IT4549E), dev
 
 
 ### 3. Assignment
-- **Nguyễn Minh Khôi** - Pay order (Customer/VNPay)
-- **Vũ Hải Đăng** - View product detail (Customer/Product Manager)
-- **Lê Đại Lâm** - Add/Update product (Product Manager)
-- **Phạm Thành Nam** - Place order (Customer)
-- **Bùi Xuân Sơn** - Place rush order (Customer)
+- **Nguyễn Minh Khôi** - Pay order (Customer/VNPay) & Cancel Order (Customer)
+- **Vũ Hải Đăng** - View product detail (Customer/Product Manager) & Manage Cart (Customer)
+- **Lê Đại Lâm** - Add/Update product (Product Manager) & Process Pending Order ( Product Manager)
+- **Phạm Thành Nam** - Place order (Customer) & Search Product ( Customer)
+- **Bùi Xuân Sơn** - Place rush order (Customer) & Manage Users (Admin)
 
 
 
