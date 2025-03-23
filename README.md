@@ -9,8 +9,8 @@ This repository contains the Capstone Project for the ITSS course (IT4549E), dev
 ### 2. Team Members
 
 
-- **Nguyễn Minh Khôi** (20226050) - [Khoi.NM226050@sis.hust.edu.vn](mailto:Khoi.NM226050@sis.hust.edu.vn) 
 - **Vũ Hải Đăng** (20225962) - [Dang.VH225962@sis.hust.edu.vn](mailto:Dang.VH225962@sis.hust.edu.vn) - Leader
+- **Nguyễn Minh Khôi** (20226050) - [Khoi.NM226050@sis.hust.edu.vn](mailto:Khoi.NM226050@sis.hust.edu.vn) 
 - **Lê Đại Lâm** (20225982) - [Lam.LD225892@sis.hust.edu.vn](mailto:Lam.LD225892@sis.hust.edu.vn) 
 - **Phạm Thành Nam** (20225989) - [Nam.PT225989@sis.hust.edu.vn](mailto:Nam.PT225989@sis.hust.edu.vn) 
 - **Bùi Xuân Sơn** (20226065) - [Son.BX226065@sis.hust.edu.vn](mailto:Son.BX226065@sis.hust.edu.vn) 
