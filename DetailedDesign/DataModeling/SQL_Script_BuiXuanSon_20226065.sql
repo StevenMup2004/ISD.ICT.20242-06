@@ -1,4 +1,6 @@
-
+--- SQLite3 scripts to create database for AIMS project ---
+--
+--
 CREATE TABLE "Product" (
   "productID" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   "title" TEXT NOT NULL,
