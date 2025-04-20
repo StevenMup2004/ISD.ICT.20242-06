@@ -1,27 +1,31 @@
-
+--- SQLite3 scripts to create database for AIMS project ---
+--
+--
 CREATE TABLE "Product" (
   "productID" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  "title" VARCHAR(45) NOT NULL,
-  "category" VARCHAR(45) NOT NULL,
-  "value" FLOAT NOT NULL,
-  "price" FLOAT NOT NULL,
-  "quantity" INT NOT NULL,
-  "description" VARCHAR(1000),
-  "imageURL" VARCHAR(45) NOT NULL,
-  "barCode" VARCHAR(100),
-  "warehouseEntryDate" DATE,
-  "dimensions" VARCHAR(100),
-  "weight" FLOAT,
-  "warehouseProvince" VARCHAR(100),
-  "warehouseDistrict" VARCHAR(100),
-  "warehouseAddress" VARCHAR(255)
+  "title" TEXT NOT NULL,
+  "category" TEXT NOT NULL,
+  "value" REAL NOT NULL,
+  "price" REAL NOT NULL,
+  "quantity" INT NOT NULL DEFAULT 0,
+  "description" TEXT,
+  "imageURL" TEXT NOT NULL,
+  "barCode" TEXT,
+  "warehouseEntryDate" DATE DEFAULT CURRENT_DATE,
+  "dimensions" TEXT,
+  "weight" REAL,
+  "warehouseProvince" TEXT,
+  "warehouseDistrict" TEXT,
+  "warehouseAddress" TEXT,
+  "createdAt" DATETIME DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 CREATE TABLE "CD"(
   "productID" INTEGER PRIMARY KEY NOT NULL,
-  "artist" VARCHAR(100) NOT NULL,
-  "recordLabel" VARCHAR(100) NOT NULL,
-  "tracklist" VARCHAR(1000),
-  "genre" VARCHAR(100) NOT NULL,
+  "artist" TEXT NOT NULL,
+  "recordLabel" TEXT NOT NULL,
+  "tracklist" TEXT,
+  "genre" TEXT NOT NULL,
   "releasedDate" DATE,
   CONSTRAINT "fk_CD_Product1"
     FOREIGN KEY("productID")
@@ -29,27 +33,27 @@ CREATE TABLE "CD"(
 );
 CREATE TABLE "Book"(
   "productID" INTEGER PRIMARY KEY NOT NULL,
-  "author" VARCHAR(100) NOT NULL,
-  "coverType" VARCHAR(45) NOT NULL,
-  "publisher" VARCHAR(100) NOT NULL,
+  "author" TEXT NOT NULL,
+  "coverType" TEXT NOT NULL,
+  "publisher" TEXT NOT NULL,
   "publicationDate" DATE NOT NULL,
   "numOfPages" INTEGER NOT NULL,
-  "language" VARCHAR(45) NOT NULL,
-  "genre" VARCHAR(100) NOT NULL,
+  "language" TEXT NOT NULL,
+  "genre" TEXT NOT NULL,
   CONSTRAINT "fk_Book_Product1"
     FOREIGN KEY("productID")
     REFERENCES "Product"("productID")
 );
 CREATE TABLE "DVD" (
   "productID" INTEGER PRIMARY KEY NOT NULL,
-  "discType" VARCHAR(45) NOT NULL,
-  "director" VARCHAR(100) NOT NULL,
-  "runtime" VARCHAR(20) NOT NULL,
-  "studio" VARCHAR(100) NOT NULL,
-  "language" VARCHAR(45) NOT NULL,
-  "subtitle" VARCHAR(45) NOT NULL,
+  "discType" TEXT NOT NULL,
+  "director" TEXT NOT NULL,
+  "runtime" TEXT NOT NULL,
+  "studio" TEXT NOT NULL,
+  "language" TEXT NOT NULL,
+  "subtitle" TEXT NOT NULL,
   "releaseDate" DATE NOT NULL,
-  "genre" VARCHAR(100) NOT NULL,
+  "genre" TEXT NOT NULL,
   CONSTRAINT "fk_DVD_Product1"
     FOREIGN KEY ("productID")
     REFERENCES "Product"("productID")
@@ -57,47 +61,50 @@ CREATE TABLE "DVD" (
 
 CREATE TABLE "DeliveryInfo" (
   "deliveryInfoID" INTEGER PRIMARY KEY AUTOINCREMENT,
-  "recipientName" VARCHAR(100) NOT NULL,
-  "email" VARCHAR(100) NOT NULL,
-  "phoneNumber" VARCHAR(20) NOT NULL,
-  "province" VARCHAR(45) NOT NULL,
-  "district" VARCHAR(45) NOT NULL,
-  "address" VARCHAR(200) NOT NULL,
-  "deliveryMethod" VARCHAR(20) NOT NULL,
-  "deliveryTime" FLOAT,
+  "recipientName" TEXT NOT NULL,
+  "email" TEXT NOT NULL,
+  "phoneNumber" TEXT NOT NULL,
+  "province" TEXT NOT NULL,
+  "district" TEXT NOT NULL,
+  "address" TEXT NOT NULL,
+  "deliveryMethod" TEXT NOT NULL,
+  "deliveryTime" REAL,
   "isRushDeliveryEligible" BOOLEAN NOT NULL,
-  "deliveryInstructions" VARCHAR(255)
+  "deliveryInstructions" TEXT,
+  "createdAt" DATETIME DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE "Card"(
   "cardID" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  "cardCode" VARCHAR(15) NOT NULL,
-  "owner" VARCHAR(45) NOT NULL,
-  "cvvCode" VARCHAR(3) NOT NULL,
-  "dateExpired" VARCHAR(4) NOT NULL
+  "cardCode" TEXT NOT NULL,
+  "owner" TEXT NOT NULL,
+  "cvvCode" TEXT NOT NULL,
+  "dateExpired" TEXT NOT NULL
 );
 
 CREATE TABLE "User" (
   "userID" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  "username" VARCHAR(50) NOT NULL UNIQUE,
-  "email" VARCHAR(100) NOT NULL,
-  "password" VARCHAR(255) NOT NULL,
-  "role" VARCHAR(45) NOT NULL,
-  "status" BOOLEAN NOT NULL
+  "username" TEXT NOT NULL UNIQUE,
+  "email" TEXT NOT NULL,
+  "password" TEXT NOT NULL,
+  "role" TEXT NOT NULL,
+  "status" BOOLEAN NOT NULL,
+  "createdAt" DATETIME DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE "Cart" (
   "cartID" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  "sessionID" VARCHAR NOT NULL,
-  "createdDate" DATE NOT NULL,
-  "updatedDate" DATE NOT NULL
+  "sessionID" TEXT,
+  "createdAt" DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE "CartItem" (
   "cartID" INTEGER NOT NULL,
   "productID" INTEGER NOT NULL,
   "quantity" INTEGER NOT NULL,
-  "price" FLOAT NOT NULL,
+  "price" REAL NOT NULL,
   PRIMARY KEY ("cartID", "productID"),
   FOREIGN KEY ("cartID") REFERENCES "Cart"("cartID"),
   FOREIGN KEY ("productID") REFERENCES "Product"("productID")
@@ -105,8 +112,8 @@ CREATE TABLE "CartItem" (
 
 CREATE TABLE "Order" (
   "orderID" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  "status" VARCHAR NOT NULL,
-  "shippingFee" FLOAT NOT NULL,
+  "status" CHARACTER(15) NOT NULL,
+  "shippingFee" REAL NOT NULL,
   "deliveryInfoID" INTEGER NOT NULL,
   FOREIGN KEY ("deliveryInfoID") REFERENCES "DeliveryInfo"("deliveryInfoID")
 );
@@ -115,10 +122,10 @@ CREATE TABLE "OrderItem" (
   "orderID" INTEGER NOT NULL,
   "productID" INTEGER NOT NULL,
   "quantity" INTEGER NOT NULL,
-  "unitPrice" FLOAT NOT NULL,
-  "subtotal" FLOAT NOT NULL,
+  "unitPrice" REAL NOT NULL,
+  "subtotal" REAL NOT NULL,
   "isRushDeliveryEligible" BOOLEAN NOT NULL,
-  "weight" FLOAT,
+  "weight" REAL,
   PRIMARY KEY ("orderID", "productID"),
   FOREIGN KEY ("orderID") REFERENCES "Order"("orderID"),
   FOREIGN KEY ("productID") REFERENCES "Product"("productID")
@@ -128,27 +135,51 @@ CREATE TABLE "Invoice" (
   "invoiceID" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   "orderID" INTEGER NOT NULL,
   "issueDate" DATE NOT NULL,
-  "subtotal" FLOAT NOT NULL,
-  "VAT" FLOAT NOT NULL,
-  "totalWithVAT" FLOAT NOT NULL,
-  "regularDeliveryFee" FLOAT NOT NULL,
-  "rushDeliveryFee" FLOAT NOT NULL,
-  "totalAmount" FLOAT NOT NULL,
-  "paymentMethod" VARCHAR(45) NOT NULL,
-  "VAT_RATE" FLOAT NOT NULL,
+  "subtotal" REAL NOT NULL,
+  "VAT" REAL NOT NULL,
+  "totalWithVAT" REAL NOT NULL,
+  "regularDeliveryFee" REAL NOT NULL,
+  "rushDeliveryFee" REAL NOT NULL,
+  "totalAmount" REAL NOT NULL,
+  "paymentMethod" TEXT NOT NULL,
+  "VAT_RATE" REAL NOT NULL,
   FOREIGN KEY ("orderID") REFERENCES "Order"("orderID")
 );
 
 CREATE TABLE "PaymentTransaction" (
   "transactionID" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  "amount" FLOAT NOT NULL,
-  "paymentMethod" VARCHAR(45) NOT NULL,
+  "amount" REAL NOT NULL,
+  "paymentMethod" TEXT NOT NULL,
   "transactionDate" DATE NOT NULL,
-  "status" VARCHAR(20) NOT NULL,
-  "content" VARCHAR(255),
+  "status" TEXT NOT NULL,
+  "content" TEXT,
   "cardID" INTEGER NOT NULL,
   "invoiceID" INTEGER NOT NULL,
   FOREIGN KEY ("cardID") REFERENCES "Card"("cardID"),
   FOREIGN KEY ("invoiceID") REFERENCES "Invoice"("invoiceID")
 );
+
+
+
+CREATE INDEX "idx_product_category" ON "Product"("category");
+CREATE INDEX "idx_product_title" ON "Product"("title");
+CREATE INDEX "idx_order_status" ON "Order"("status");
+
+CREATE TRIGGER "product_updatedAt_tg"
+AFTER UPDATE ON "Product"
+BEGIN
+  UPDATE "Product"
+  SET "updatedAt" = DATETIME('NOW', 'localtime')
+  WHERE "productID" = OLD."productID";
+END;
+
+CREATE TRIGGER "user_updatedAt_tg"
+AFTER UPDATE ON "User"
+FOR EACH ROW
+BEGIN
+  UPDATE "User"
+  SET "updatedAt" = DATETIME('NOW', 'localtime')
+  WHERE "userID" = OLD."userID";
+END;
+
 
