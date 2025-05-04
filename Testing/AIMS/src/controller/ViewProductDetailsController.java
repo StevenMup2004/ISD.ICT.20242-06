@@ -1,6 +1,7 @@
 // Vu Hai Dang - 20225962 - UseCase View Product Details
 package controller;
 
+
 import model.Product;
 import model.Book;
 import model.CD;
@@ -9,6 +10,7 @@ import model.LPRecord;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Date;
+
 
 
 public class ViewProductDetailsController {
