@@ -19,7 +19,7 @@ public class Order {
     private float regularDeliveryFee;
     private float rushDeliveryFee;
     private float totalAmount;
-  //  private DeliveryInfo deliveryInfo;       // giả định đã có class DeliveryInfo
+    private DeliveryInfo deliveryInfo;       // giả định đã có class DeliveryInfo
     private int paymentTransactionId;
 
     public Order(int orderId) {
@@ -34,7 +34,7 @@ public class Order {
         this.regularDeliveryFee = 0;
         this.rushDeliveryFee = 0;
         this.totalAmount = 0;
-       // this.deliveryInfo = null;
+        this.deliveryInfo = null;
         this.paymentTransactionId = 0;
     }
 
@@ -81,7 +81,7 @@ public class Order {
     public float calculateSubtotal() {
         subtotal = 0;
         for (OrderItem item : orderItems) {
-       //     subtotal += item.getPrice() * item.getQuantity();
+            subtotal += item.getUnitPrice() * item.getQuantity();
         }
         System.out.println("Order #" + orderId + " subtotal=" + subtotal);
         return subtotal;
@@ -94,15 +94,15 @@ public class Order {
     }
 
     public float calculateRegularDeliveryFee() {
-        // stub: giả lập 20.000đ
-        regularDeliveryFee = 20000f;
+        // This will now be handled by DeliveryService
+        // Default value in case the controller doesn't set it
         System.out.println("Order #" + orderId + " regularDeliveryFee=" + regularDeliveryFee);
         return regularDeliveryFee;
     }
 
     public float calculateRushDeliveryFee() {
-        // stub: giả lập 10.000đ
-        rushDeliveryFee = 10000f;
+        // This will now be handled by DeliveryService
+        // Default value in case the controller doesn't set it
         System.out.println("Order #" + orderId + " rushDeliveryFee=" + rushDeliveryFee);
         return rushDeliveryFee;
     }
@@ -128,6 +128,27 @@ public class Order {
         return new Order(id);
     }
 
+    /**
+     * Add an order item to the order
+     * Also categorizes the item into regular or rush delivery
+     * 
+     * @param item The order item to add
+     */
+    public void addOrderItem(OrderItem item) {
+        if (item == null) return;
+        
+        orderItems.add(item);
+        
+        // Categorize by rush eligibility
+        if (item.checkEligibilityForRushDelivery()) {
+            rushOrderItems.add(item);
+        } else {
+            regularOrderItems.add(item);
+        }
+        
+        System.out.println("Added item " + item.getProductId() + " to Order #" + orderId);
+    }
+
     // getters/setters for controller
     public int getOrderId()                 { return orderId; }
     public String getStatus()               { return status; }
@@ -137,8 +158,29 @@ public class Order {
     public float getRushDeliveryFee()       { return rushDeliveryFee; }
     public float getTotalAmount()           { return totalAmount; }
     public List<OrderItem> getOrderItems()  { return orderItems; }
+    public DeliveryInfo getDeliveryInfo()   { return deliveryInfo; }
 
     public void setPaymentTransactionId(int txId) {
         this.paymentTransactionId = txId;
+    }
+    
+    public void setDeliveryInfo(DeliveryInfo deliveryInfo) {
+        this.deliveryInfo = deliveryInfo;
+        System.out.println("Set delivery info for Order #" + orderId);
+    }
+    
+    public void setRegularDeliveryFee(float fee) {
+        this.regularDeliveryFee = fee;
+        System.out.println("Set regular delivery fee for Order #" + orderId + ": " + fee);
+    }
+    
+    public void setRushDeliveryFee(float fee) {
+        this.rushDeliveryFee = fee;
+        System.out.println("Set rush delivery fee for Order #" + orderId + ": " + fee);
+    }
+    
+    public void setTotalAmount(float amount) {
+        this.totalAmount = amount;
+        System.out.println("Set total amount for Order #" + orderId + ": " + amount);
     }
 }
