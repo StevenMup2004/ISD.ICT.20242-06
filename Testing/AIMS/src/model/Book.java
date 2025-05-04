@@ -75,14 +75,12 @@ public class Book extends Product {
     
     @Override
     public void createProduct() {
-        // In a real implementation, this would add the book to a database
         System.out.println("Book created: " + title + " by " + author);
     }
     
    
     @Override
     public void updateProduct(int productID) {
-        // In a real implementation, this would update the book in a database
         System.out.println("Book updated: " + title + " by " + author);
     }
 }

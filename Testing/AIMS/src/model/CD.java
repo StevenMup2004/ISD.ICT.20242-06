@@ -60,13 +60,11 @@ public class CD extends Product {
     
     @Override
     public void createProduct() {
-        // In a real implementation, this would add the CD to a database
         System.out.println("CD created: " + title + " by " + artist);
     }
     
     @Override
     public void updateProduct(int productID) {
-        // In a real implementation, this would update the CD in a database
         System.out.println("CD updated: " + title + " by " + artist);
     }
 

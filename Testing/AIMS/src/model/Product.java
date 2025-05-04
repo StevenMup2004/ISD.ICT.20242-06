@@ -123,19 +123,15 @@ public class Product {
     }
     
     public void createProduct() {
-        // In a real implementation, this would add the product to a database
         System.out.println("Product created: " + title);
     }
     
     public void updateProduct(int productID) {
-        // In a real implementation, this would update the product in a database
         System.out.println("Product updated: " + title);
     }
     
     
     public boolean checkEligibilityForRushDelivery() {
-        // In a real implementation, this would check various conditions
-        // For example, product weight, dimensions, warehouse location, etc.
         return weight < 10.0f && quantity > 0;
     }
     

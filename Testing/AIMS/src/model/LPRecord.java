@@ -61,14 +61,12 @@ public class LPRecord extends Product {
     
     @Override
     public void createProduct() {
-        // In a real implementation, this would add the LP record to a database
         System.out.println("LP Record created: " + title + " by " + artist);
     }
     
     
     @Override
     public void updateProduct(int productID) {
-        // In a real implementation, this would update the LP record in a database
         System.out.println("LP Record updated: " + title + " by " + artist);
     }
 }

@@ -1,3 +1,5 @@
+// Vu Hai Dang - 20225962 - UseCase Manage Cart
+
 package testing;
 
 import static org.junit.Assert.*;
@@ -7,36 +9,27 @@ import org.junit.Test;
 import controller.AddProductToCartController;
 import controller.UpdateCartController;
 
-/**
- * JUnit test class for the UpdateCartController class.
- */
+
 public class UpdateCartControllerTest {
     
     private UpdateCartController controller;
     private AddProductToCartController addController;
     
-    /**
-     * Set up a new controller before each test and add a product to the cart.
-     */
+
     @Before
     public void setUp() {
-        // Clear any existing carts to ensure test isolation
         AddProductToCartController.clearCarts();
         
         controller = new UpdateCartController();
         addController = new AddProductToCartController();
         
-        // Sync carts between controllers
         UpdateCartController.syncCarts();
         
-        // Add a product to the cart for testing
         boolean added = addController.requestToAddProductToCart(1, 5, 1);
         assertTrue("Product should be added successfully", added);
     }
     
-    /**
-     * Test updating the quantity of a product in the cart.
-     */
+    //Test updating the quantity of a product in the cart.
     @Test
     public void testUpdateQuantity() {
         boolean result = controller.updateQuantity(1, 10, 1);
@@ -44,9 +37,7 @@ public class UpdateCartControllerTest {
         assertTrue("Updating quantity of existing product should return true", result);
     }
     
-    /**
-     * Test updating the quantity of a non-existent product.
-     */
+    //Test updating the quantity of a non-existent product.
     @Test
     public void testUpdateQuantityOfNonExistentProduct() {
         boolean result = controller.updateQuantity(999, 10, 1);
@@ -54,9 +45,7 @@ public class UpdateCartControllerTest {
         assertFalse("Updating quantity of non-existent product should return false", result);
     }
     
-    /**
-     * Test updating to an invalid quantity.
-     */
+    //Test updating to an invalid quantity.
     @Test
     public void testUpdateToInvalidQuantity() {
         boolean result = controller.updateQuantity(1, -5, 1);
@@ -64,9 +53,8 @@ public class UpdateCartControllerTest {
         assertFalse("Updating to negative quantity should return false", result);
     }
     
-    /**
-     * Test updating a product in an invalid cart.
-     */
+    //Test updating a product in an invalid cart.
+    
     @Test
     public void testUpdateProductInInvalidCart() {
         boolean result = controller.updateQuantity(1, 10, -1);
@@ -74,9 +62,7 @@ public class UpdateCartControllerTest {
         assertFalse("Updating product in invalid cart should return false", result);
     }
     
-    /**
-     * Test removing a product from the cart.
-     */
+    //Test removing a product from the cart.
     @Test
     public void testRemoveProductFromCart() {
         boolean result = controller.removeProductFromCart(1, 1);
@@ -84,9 +70,8 @@ public class UpdateCartControllerTest {
         assertTrue("Removing existing product should return true", result);
     }
     
-    /**
-     * Test removing a non-existent product.
-     */
+    // Test removing a non-existent product.
+ 
     @Test
     public void testRemoveNonExistentProduct() {
         boolean result = controller.removeProductFromCart(999, 1);
@@ -94,9 +79,7 @@ public class UpdateCartControllerTest {
         assertFalse("Removing non-existent product should return false", result);
     }
     
-    /**
-     * Test removing a product from an invalid cart.
-     */
+    // Test removing a product from an invalid cart.
     @Test
     public void testRemoveProductFromInvalidCart() {
         boolean result = controller.removeProductFromCart(1, -1);
@@ -104,9 +87,7 @@ public class UpdateCartControllerTest {
         assertFalse("Removing product from invalid cart should return false", result);
     }
     
-    /**
-     * Test the full update cart request method.
-     */
+    //Test the full update cart request method.
     @Test
     public void testRequestToUpdateCart() {
         boolean result = controller.requestToUpdateCart(1, 10, 1);
@@ -114,9 +95,7 @@ public class UpdateCartControllerTest {
         assertTrue("Updating existing product should return true", result);
     }
     
-    /**
-     * Test requesting update with zero quantity should remove the product.
-     */
+    // Test requesting update with zero quantity should remove the product.
     @Test
     public void testRequestToUpdateCartWithZeroQuantity() {
         boolean result = controller.requestToUpdateCart(1, 0, 1);

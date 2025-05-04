@@ -1,3 +1,4 @@
+// Vu Hai Dang - 20225962 - UseCase Manage Cart
 package testing;
 
 import static org.junit.Assert.*;
@@ -6,26 +7,18 @@ import org.junit.Test;
 
 import controller.AddProductToCartController;
 
-/**
- * JUnit test class for the AddProductToCartController class.
- */
 public class AddProductToCartControllerTest {
     
     private AddProductToCartController controller;
     
-    /**
-     * Set up a new controller before each test.
-     */
+    
     @Before
     public void setUp() {
-        // Clear any existing carts to ensure test isolation
         AddProductToCartController.clearCarts();
         controller = new AddProductToCartController();
     }
     
-    /**
-     * Test adding a valid product to the cart.
-     */
+    //Test adding a valid product to the cart.
     @Test
     public void testAddValidProductToCart() {
         boolean result = controller.requestToAddProductToCart(1, 5, 1);
@@ -33,9 +26,7 @@ public class AddProductToCartControllerTest {
         assertTrue("Adding a valid product should return true", result);
     }
     
-    /**
-     * Test adding a product with invalid ID.
-     */
+    // Test adding a product with invalid ID.
     @Test
     public void testAddProductWithInvalidID() {
         boolean result = controller.requestToAddProductToCart(-1, 5, 1);
@@ -43,9 +34,7 @@ public class AddProductToCartControllerTest {
         assertFalse("Adding a product with invalid ID should return false", result);
     }
     
-    /**
-     * Test adding a product with invalid quantity.
-     */
+    //Test adding a product with invalid quantity.
     @Test
     public void testAddProductWithInvalidQuantity() {
         boolean result = controller.requestToAddProductToCart(1, -5, 1);
@@ -53,9 +42,7 @@ public class AddProductToCartControllerTest {
         assertFalse("Adding a product with invalid quantity should return false", result);
     }
     
-    /**
-     * Test adding a product to an invalid cart.
-     */
+    //Test adding a product to an invalid cart.
     @Test
     public void testAddProductToInvalidCart() {
         boolean result = controller.requestToAddProductToCart(1, 5, -1);
@@ -63,24 +50,18 @@ public class AddProductToCartControllerTest {
         assertFalse("Adding a product to invalid cart should return false", result);
     }
     
-    /**
-     * Test checking if a product is in the cart.
-     */
+    // Test checking if a product is in the cart.
     @Test
     public void testCheckProductInCart() {
-        // First add a product to the cart
+        
         boolean addResult = controller.requestToAddProductToCart(1, 5, 1);
         assertTrue("Product should be added successfully", addResult);
-        
-        // Then check if it's in the cart
-        boolean checkResult = controller.checkProductInCart(1, 1);
-        
+  
+        boolean checkResult = controller.checkProductInCart(1, 1); 
         assertTrue("Product should be in the cart after adding it", checkResult);
     }
     
-    /**
-     * Test checking if a product is in a non-existent cart.
-     */
+    // Test checking if a product is in a non-existent cart.
     @Test
     public void testCheckProductInNonExistentCart() {
         boolean result = controller.checkProductInCart(1, -1);

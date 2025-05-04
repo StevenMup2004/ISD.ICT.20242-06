@@ -1,3 +1,4 @@
+// Vu Hai Dang - 20225962 - UseCase View Product Details
 package controller;
 
 import model.Product;
@@ -9,17 +10,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Date;
 
-/**
- * Controller class for handling the viewing of product details.
- * This class manages the interaction between the UI and the Product classes.
- */
+
 public class ViewProductDetailsController {
-    // In-memory storage for products (for testing purposes)
     private static Map<Integer, Product> productMap = new HashMap<>();
 
-    /**
-     * Handles the request to view a product's details.
-     */
     public Product requestToViewProductDetails(int productID) {
         if (productID <= 0) return null;
 
@@ -27,9 +21,7 @@ public class ViewProductDetailsController {
         return product != null ? product : null;
     }
 
-    /**
-     * Renders the product details screen.
-     */
+    
     public Product renderProductDetails(int productID) {
         Product product = requestToViewProductDetails(productID);
         if (product == null) {
@@ -41,9 +33,7 @@ public class ViewProductDetailsController {
         return product;
     }
 
-    /**
-     * Retrieves a product by ID.
-     */
+    
     private Product getProduct(int productID) {
         return productMap.get(productID);
     }
