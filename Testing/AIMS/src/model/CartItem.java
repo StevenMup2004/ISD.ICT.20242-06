@@ -65,4 +65,16 @@ public class CartItem {
     private int generateCartItemID() {
         return (int) (Math.random() * 10000);
     }
+
+        /**
+     * Gets the associated Product for this cart item
+     * Retrieves the product from the database or data source based on productID
+     * @return Product object associated with this cart item
+     */
+    public Product getProduct() {
+        // In a real implementation, this would fetch the product from a repository
+        // For now, we'll create a simple stub that returns a basic product
+        return new Product(productID, "Product " + productID, "", price, 0.5f);
+    }
 }
+
