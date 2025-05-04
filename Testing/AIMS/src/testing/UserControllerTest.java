@@ -31,30 +31,47 @@ public class UserControllerTest {
 	    );
 	}
 	@Test
-	public void testCheckIfUserInformationMeetsPolicies() {
-		User user;
-		
+	public void testCheckIfUserInformationMeetsPolicies1() {
+		User user;	
 		user = createUser("validUser_123", "user@example.com", "Strong1@pass");
 	    assertEquals(0, userController.checkIfUserInformationMeetsPolicies(user));
-	    
+	}
+	public void testCheckIfUserInformationMeetsPolicies2() {
+		User user;	
 	    user = createUser("invalid user!", "user@example.com", "Strong2@pass");
-	    assertEquals(1, userController.checkIfUserInformationMeetsPolicies(user));
-	    
-	    user = createUser("validUser", "invalidemail@", "Strong1@pass");
+	    assertEquals(1, userController.checkIfUserInformationMeetsPolicies(user));   
+	}
+	public void testCheckIfUserInformationMeetsPolicies3() {
+			User user;	
+		    user = createUser("validUser", "invalidemail@", "Strong1@pass");
 	    assertEquals(2, userController.checkIfUserInformationMeetsPolicies(user));
-	    
+	    }
+	public void testCheckIfUserInformationMeetsPolicies4() {
+			User user;	
+		
 	    user = createUser("validUser", "user@example.com", "weakpass");
 	    assertEquals(4, userController.checkIfUserInformationMeetsPolicies(user));
-	    
+	    }
+	public void testCheckIfUserInformationMeetsPolicies5() {
+		User user;	
+		
 	    user = createUser("bad!user", "bademail", "Strong1@pass");
 	    assertEquals(3, userController.checkIfUserInformationMeetsPolicies(user));
-	    
+	}
+	public void testCheckIfUserInformationMeetsPolicies6() {
+		User user;		
 	    user = createUser("bad user", "user@example.com", "nopass");
 	    assertEquals(5, userController.checkIfUserInformationMeetsPolicies(user));
-	    
+	}
+	public void testCheckIfUserInformationMeetsPolicies7() {
+		User user;	
+		
 	    user = createUser("validUser", "bad@", "123");
 	    assertEquals(6, userController.checkIfUserInformationMeetsPolicies(user));
-	    
+	}
+	public void testCheckIfUserInformationMeetsPolicies8() {
+		User user;	
+		
 	    user = createUser("!", "noemail", "123");
 	    assertEquals(7, userController.checkIfUserInformationMeetsPolicies(user));
 	}

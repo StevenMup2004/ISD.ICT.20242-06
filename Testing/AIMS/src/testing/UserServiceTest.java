@@ -1,3 +1,4 @@
+// writer: Bui Xuan Son - 20226065
 package testing;
 
 import static org.junit.Assert.*;
@@ -41,8 +42,12 @@ public class UserServiceTest {
 	    
 	}
 	@Test
-	public void testCheckIfUsernameAlreadyExists() {
+	public void testCheckIfUsernameAlreadyExists1() {
 		assertEquals(true, userService.checkIfUsernameAlreadyExists("alice123"));
+	}
+	
+	@Test
+	public void testCheckIfUsernameAlreadyExists2() {
 		assertEquals(false, userService.checkIfUsernameAlreadyExists("thomas124"));
 	}
 }

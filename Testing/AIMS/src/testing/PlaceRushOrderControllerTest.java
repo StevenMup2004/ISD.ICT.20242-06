@@ -1,3 +1,4 @@
+// writer: Bui Xuan Son - 20226065
 package testing;
 
 import static org.junit.Assert.*;
@@ -17,7 +18,7 @@ public class PlaceRushOrderControllerTest {
 	}
 	
 	@Test
-	public void testCheckIfRushDeliveryInfoMeetsPolicies() {
+	public void testCheckIfRushDeliveryInfoMeetsPolicies1() {
 		DeliveryInfo deliveryInfo;
 		deliveryInfo = new DeliveryInfo(
 				1,
@@ -27,7 +28,10 @@ public class PlaceRushOrderControllerTest {
 				"Hanoi",
 				"Ba Dinh");
 		assertEquals(0, placeRushOrderController.checkIfRushDeliveryInfoMeetsPolicies(deliveryInfo));
-		deliveryInfo = new DeliveryInfo(
+	}
+	@Test
+	public void testCheckIfRushDeliveryInfoMeetsPolicies2() {
+		DeliveryInfo deliveryInfo = new DeliveryInfo(
 				2,
 				"Thomas",
 				"@gmail.com",
@@ -35,8 +39,10 @@ public class PlaceRushOrderControllerTest {
 				"Thai Binh",
 				"Dong Hung");
 		assertEquals(1, placeRushOrderController.checkIfRushDeliveryInfoMeetsPolicies(deliveryInfo));
-				
-		deliveryInfo = new DeliveryInfo(
+	}		
+	@Test
+	public void testCheckIfRushDeliveryInfoMeetsPolicies3() {
+		DeliveryInfo deliveryInfo = new DeliveryInfo(
 				3,
 				"Thomas",
 				"user@gmail.com",
@@ -44,8 +50,10 @@ public class PlaceRushOrderControllerTest {
 				"Thai Binh",
 				"Dong Hung");
 		assertEquals(2, placeRushOrderController.checkIfRushDeliveryInfoMeetsPolicies(deliveryInfo));
-		
-		deliveryInfo = new DeliveryInfo(
+	}	
+	@Test
+	public void testCheckIfRushDeliveryInfoMeetsPolicies4() {
+		DeliveryInfo deliveryInfo = new DeliveryInfo(
 				4,
 				"Shelly",
 				"shelly123gmail.com",
