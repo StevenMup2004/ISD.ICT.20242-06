@@ -1,5 +1,6 @@
 package model;
 
+
 public class CartItem {
     private int cartItemID;
     private int productID;

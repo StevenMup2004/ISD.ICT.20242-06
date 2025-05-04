@@ -3,7 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Cart {
     private int cartID;
     private List<CartItem> cartItemsList;
