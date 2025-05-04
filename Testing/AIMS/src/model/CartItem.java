@@ -16,7 +16,13 @@ public class CartItem {
         this.cartID = cartID;
     }
     
-    
+    public CartItem(int cartItemID, int productID, int cartID, int quantity, float price) {
+        this.cartItemID = cartItemID;
+        this.productID = productID;
+        this.quantity = quantity;
+        this.price = price;
+        this.cartID = cartID;
+    }
     public int getCartItemID() {
         return cartItemID;
     }
