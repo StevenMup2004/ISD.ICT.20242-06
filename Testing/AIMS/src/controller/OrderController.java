@@ -395,4 +395,19 @@ public class OrderController {
     public List<Order> getOrderList() {
         return new ArrayList<>(orderList);
     }
+
+	public Object ApproveOrder() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object RejectOrder() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setCurrentUserRole(String string) {
+		// TODO Auto-generated method stub
+		
+	}
 }

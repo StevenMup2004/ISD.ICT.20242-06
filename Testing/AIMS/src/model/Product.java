@@ -155,4 +155,19 @@ public class Product {
     public void searchProduct() {
         System.out.println("Searching for product: " + title);
     }
+
+	public void updateStock(int productID2, int i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setPrice(float price) {
+		this.price = price;
+		
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+		
+	}
 }
