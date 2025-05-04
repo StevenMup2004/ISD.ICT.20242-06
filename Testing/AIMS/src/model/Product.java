@@ -48,7 +48,18 @@ public class Product {
         this.warehouseDistrict = warehouseDistrict;
         this.warehouseAddress = warehouseAddress;
     }
-    
+    /**
+     * Constructor for creating a basic product with minimal information including weight
+     * Added to support CartItem.getProduct() method
+     */
+    public Product(int productID, String title, String category, float price, float weight) {
+        this.productID = productID;
+        this.title = title;
+        this.category = category;
+        this.price = price;
+        this.weight = weight;
+        this.quantity = 1; // Default quantity
+    }
     
     public int getProductID() {
         return productID;
