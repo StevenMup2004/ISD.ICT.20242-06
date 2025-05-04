@@ -4,9 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.*;
-
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -100,22 +97,18 @@ public class ViewProductDetailsControllerTest {
     // Test that product type-specific attributes are accessible.
     @Test
     public void testProductTypeSpecificAttributes() {
-        // Test Book-specific attribute
         Product product = controller.requestToViewProductDetails(1);
         Book book = (Book) product;
         assertEquals("Book should have the correct author", "F. Scott Fitzgerald", book.getAuthor());
         
-        // Test CD-specific attribute
         product = controller.requestToViewProductDetails(2);
         CD cd = (CD) product;
         assertEquals("CD should have the correct artist", "The Beatles", cd.getArtist());
         
-        // Test DVD-specific attribute
         product = controller.requestToViewProductDetails(3);
         DVD dvd = (DVD) product;
         assertEquals("DVD should have the correct runtime", 175, dvd.getRuntime());
         
-        // Test LP Record-specific attribute
         product = controller.requestToViewProductDetails(4);
         LPRecord lpRecord = (LPRecord) product;
         assertEquals("LP Record should have the correct artist", "Pink Floyd", lpRecord.getArtist());

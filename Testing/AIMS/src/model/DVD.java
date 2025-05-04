@@ -83,14 +83,12 @@ public class DVD extends Product {
     
     @Override
     public void createProduct() {
-        // In a real implementation, this would add the DVD to a database
         System.out.println("DVD created: " + title);
     }
     
     
     @Override
     public void updateProduct(int productID) {
-        // In a real implementation, this would update the DVD in a database
         System.out.println("DVD updated: " + title);
     }
 }

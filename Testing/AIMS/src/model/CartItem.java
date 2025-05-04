@@ -56,8 +56,6 @@ public class CartItem {
     }
     
     private int generateCartItemID() {
-        // This is a simplified implementation
-        // In a real system, this would be handled by a database or ID generator
         return (int) (Math.random() * 10000);
     }
 }
