@@ -8,20 +8,14 @@
  * the single responsibility of retrieving and displaying product details.
  * 
  * Improvement: No significant improvements needed.
- * 
  */
 
 package controller;
 
 
-import model.Product;
-import model.Book;
-import model.CD;
-import model.DVD;
-import model.LPRecord;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Date;
+import model.Product;
 
 
 

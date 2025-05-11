@@ -16,18 +16,17 @@
 
 package controller;
 
-import model.Cart;
-import model.Product;
-
 import java.util.HashMap;
 import java.util.Map;
+import model.Cart;
+import model.Product;
 
 
 public class UpdateCartController {
 	private static Map<Integer, Cart> cartMap = new HashMap<>();
 
 	public boolean requestToUpdateCart(int productID, int quantity, int cartID) {
-		// Check input validity
+		
 		if (productID <= 0 || cartID <= 0) {
 			return false;
 		}

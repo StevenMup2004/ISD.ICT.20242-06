@@ -1,3 +1,12 @@
+/*
+ * Cohesion Level: Functional Cohesion
+ * 
+ * SRP Violation: No
+ * This base class properly defines common product attributes and behaviors,
+ * with appropriate extension through subclasses.
+ * 
+ * No significant improvements needed.
+ */
 package model;
 
 

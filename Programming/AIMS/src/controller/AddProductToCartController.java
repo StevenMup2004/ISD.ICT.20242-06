@@ -11,16 +11,14 @@
  * Improvement:
  * 1. Extract static cart management to a dedicated CartService class
  * 2. Move product retrieval to a ProductService
- * 3. Focus this controller solely on the "add to cart" operation
+ * 3. Focus this controller solely on the "AAdd to cart" operation
  */
 package controller;
 
-import model.Cart;
-import model.Product;
-
-
 import java.util.HashMap;
 import java.util.Map;
+import model.Cart;
+import model.Product;
 
 public class AddProductToCartController {
 
@@ -47,7 +45,6 @@ public class AddProductToCartController {
 			return false;
 		}
 
-		// Add product to cart
 		return cart.addProductToCart(productID, quantity, product.getPrice());
 	}
 	// COMMUNICATIONAL COHESION: This method is only related to others through shared cart data

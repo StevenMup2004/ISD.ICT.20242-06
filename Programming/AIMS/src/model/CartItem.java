@@ -5,7 +5,7 @@
  * This class has a clear single responsibility - representing and managing 
  * a single cart item. All properties and methods are focused on this purpose.
  * 
- * No significant improvements needed.
+ * Improvement: No significant improvements needed.
  */
 
 package model;

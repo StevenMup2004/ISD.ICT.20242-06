@@ -6,7 +6,7 @@
  * This class correctly represents a specific product type with its
  * unique properties and behaviors.
  * 
- * No significant improvements needed.
+ * Improvement: No significant improvements needed.
  */
 package model;
 

@@ -12,18 +12,16 @@
  * 1. Create CartService to handle cart operations and data management
  * 2. Create InventoryService to handle product availability checks
  * 3. Focus solely on view-related operations
- * 
  */
 
 package controller;
 
-import model.Cart;
-import model.CartItem;
-import model.Product;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import model.Cart;
+import model.CartItem;
+import model.Product;
 
 
 
