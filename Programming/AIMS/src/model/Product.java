@@ -1,3 +1,4 @@
+// Pham Thanh Nam 20225989 - Place Order
 /*
  * Cohesion Level: Functional Cohesion
  * 
@@ -165,9 +166,14 @@ public class Product {
         System.out.println("Searching for product: " + title);
     }
 
-	public void updateStock(int productID2, int i) {
-		// TODO Auto-generated method stub
-		
+	public void updateStock(int productID, int quantityChange) {
+		if (this.productID == productID) {
+			this.quantity += quantityChange;
+			// Ensure quantity doesn't go below zero
+			if (this.quantity < 0) this.quantity = 0;
+			System.out.println("Updated stock for product " + productID + 
+				": new quantity = " + this.quantity);
+		}
 	}
 
 	public void setPrice(float price) {
