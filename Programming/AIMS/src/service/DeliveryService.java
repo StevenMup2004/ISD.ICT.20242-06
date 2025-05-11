@@ -1,3 +1,12 @@
+// Pham Thanh Nam 20225989 - Place Order
+/* Cohesion Level: Functional Cohesion - This service class focuses solely on delivery fee calculation
+ * with all methods related to this single responsibility.
+ * 
+ * SRP Violation: No - The class has a single responsibility of calculating delivery fees
+ * using different parameters.
+ * 
+ * Suggested Improvement (if any): None - The class follows SRP and has high cohesion.
+ */
 package service;
 
 /**
