@@ -1,3 +1,4 @@
+// Pham Thanh Nam 20225989 - Place Order
 /*
  * Cohesion Level: Functional Cohesion
  * 
@@ -85,6 +86,20 @@ public class CartItem {
         // In a real implementation, this would fetch the product from a repository
         // For now, we'll create a simple stub that returns a basic product
         return new Product(productID, "Product " + productID, "", price, 0.5f);
+    }
+    
+    /**
+     * Constructor that takes a Product object and quantity
+     * This allows easy creation of cart items directly from products
+     * @param product The product to add to cart
+     * @param quantity The quantity to add
+     */
+    public CartItem(Product product, int quantity) {
+        this.cartItemID = generateCartItemID();
+        this.productID = product.getProductID();
+        this.quantity = quantity;
+        this.price = product.getPrice();
+        this.cartID = 0; // Default cart ID, should be set by Cart when added
     }
 }
 

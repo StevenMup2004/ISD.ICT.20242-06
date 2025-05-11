@@ -1,3 +1,4 @@
+// Pham Thanh Nam 20225989 - Place Order
 /*
  * Cohesion Level: Functional Cohesion
  * 
@@ -113,5 +114,48 @@ public class Cart {
     
     public void empty() {
         cartItemsList.clear();
+    }
+    
+    /**
+     * Adds a CartItem directly to the cart
+     * @param item The CartItem to add
+     * @return true if successful, false otherwise
+     */
+    public boolean addCartItem(CartItem item) {
+        if (item == null) return false;
+        
+        // Set the cartID for the item
+        // In a real implementation, we would have a proper setter
+        // For now, we can't set cartID since no setter exists
+        
+        cartItemsList.add(item);
+        return true;
+    }
+    
+    /**
+     * Adds a product to the cart directly using a Product object
+     * @param product The Product to add
+     * @param quantity The quantity to add
+     * @return true if successful, false otherwise
+     */
+    public boolean addProduct(Product product, int quantity) {
+        if (product == null || quantity <= 0) return false;
+        
+        if (!checkAvailabilityOfChosenItems(product.getProductID(), quantity)) {
+            return false;
+        }
+        
+        for (CartItem item : cartItemsList) {
+            if (item.getProductID() == product.getProductID()) {
+                // Product already exists in cart, update quantity
+                item.changeQuantityOfProduct(product.getProductID(), item.getQuantity() + quantity);
+                return true;
+            }
+        }
+        
+        // Product doesn't exist in cart, add new item
+        CartItem newItem = new CartItem(product, quantity);
+        cartItemsList.add(newItem);
+        return true;
     }
 }

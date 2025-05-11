@@ -1,3 +1,12 @@
+// Pham Thanh Nam 20225989 - Place Order
+/* Cohesion Level: Functional Cohesion - This service class focuses solely on email functionality
+ * with all methods related to this single responsibility.
+ * 
+ * SRP Violation: No - The class has a single responsibility of generating and sending emails
+ * related to orders.
+ * 
+ * Suggested Improvement (if any): None - The class follows SRP and has high cohesion.
+ */
 package service;
 
 import model.Order;
