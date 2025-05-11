@@ -1,3 +1,4 @@
+// Pham Thanh Nam 20225989 - Place Order
 /*
  * Class Purpose: Represents a customer's invoice, including price breakdowns, delivery fees, and status.
  * 
@@ -52,7 +53,7 @@ public class Invoice {
  public void calculateSubtotal() {
      subtotal = 0;
      for (OrderItem item : productList) {
-        // subtotal += item.getPrice() * item.getQuantity();
+        subtotal += item.getUnitPrice() * item.getQuantity();
      }
  }
 
@@ -92,6 +93,74 @@ public class Invoice {
  /** Lưu invoice */
  public void save() {
      System.out.println("Saved invoice #" + invoiceId + " status=" + status);
+ }
+
+/**
+  * Adds an OrderItem to the invoice's product list
+  * @param item The OrderItem to add
+  */
+ public void addOrderItem(OrderItem item) {
+     if (item != null) {
+         productList.add(item);
+     }
+ }
+ 
+ /**
+  * Sets the order items from an order
+  * @param orderItems List of order items to set
+  */
+ public void setOrderItems(List<OrderItem> orderItems) {
+     if (orderItems != null) {
+         this.productList.clear();
+         this.productList.addAll(orderItems);
+     }
+ }
+ 
+ /**
+  * Sets delivery fees from an order
+  * @param regularFee Regular delivery fee
+  * @param rushFee Rush delivery fee
+  */
+ public void setDeliveryFees(float regularFee, float rushFee) {
+     this.regularDeliveryFee = regularFee;
+     this.rushDeliveryFee = rushFee;
+ }
+ 
+ /**
+  * Gets the product list (order items)
+  * @return List of order items
+  */
+ public List<OrderItem> getProductList() {
+     return productList;
+ }
+ 
+ /**
+  * Creates an invoice from an order
+  * @param order The order to create invoice from
+  * @return The created invoice
+  */
+ public static Invoice createFromOrder(Order order) {
+     if (order == null) return null;
+     
+     Invoice invoice = new Invoice(generateInvoiceId());
+     invoice.setOrderItems(order.getOrderItems());
+     invoice.setDeliveryFees(order.getRegularDeliveryFee(), order.getRushDeliveryFee());
+     
+     // Calculate all invoice totals
+     invoice.calculateSubtotal();
+     invoice.calculateVAT();
+     invoice.calculateTotalWithVAT();
+     invoice.calculateTotalAmount();
+     
+     return invoice;
+ }
+ 
+ /**
+  * Generates a unique invoice ID
+  * @return A new unique invoice ID
+  */
+ private static int generateInvoiceId() {
+     return (int)(System.currentTimeMillis() % 100000);
  }
 
  // getter cho controller
