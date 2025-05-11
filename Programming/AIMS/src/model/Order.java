@@ -1,4 +1,18 @@
-// src/model/Order.java
+// Le Dai Lam - 20225982 - Process pending order
+/* Cohesion Level: Temporal Cohesion
+ * 
+ * SRP Violation: Yes - Handles multiple concerns: 
+ * 1) Order data representation (ID, list of items, status)  
+ * 2) UI logic (display approval status, render order screen) 
+ * 3) Business logic (subtotal, VAT, shipping calculation) 
+ * 4) Persistence (save/getById methods). Each of these concerns should be placed in separate components.
+ * 
+ * Solution: 
+ * 1) Retain only data fields in Order.
+ * 2) Move calculations to OrderService.
+ * 3) Move save/get to OrderRepository.
+ * 4) Move UI logic (e.g. DisplayApproveStatus) to a separate class or view/controller.
+ */
 package model;
 
 import java.util.ArrayList;

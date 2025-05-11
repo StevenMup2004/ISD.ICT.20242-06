@@ -1,4 +1,3 @@
-
 /*
  * Cohesion Level: Functional Cohesion
  * 

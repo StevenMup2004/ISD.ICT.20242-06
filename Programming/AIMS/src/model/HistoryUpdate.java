@@ -1,3 +1,10 @@
+// Le Dai Lam 20225982 - Use case Add/Update Product
+/* Cohesion Level: Functional Cohesion
+ * 
+ * SRP Violation: No – Focused solely on update history management. Handles a single concern: tracking product update activities.
+ * 
+ * Solution: No changes needed.
+ */
 package model;
 
 import java.util.*;

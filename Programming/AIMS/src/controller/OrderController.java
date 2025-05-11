@@ -1,4 +1,16 @@
-// src/controller/OrderController.java
+// Le Dai Lam - 20225982 - Process pending order
+/* Cohesion Level: Procedural Cohesion
+ * 
+ * SRP Violation: Yes - Handles multiple concerns: 
+ * 1) Order approval and rejection
+ * 2) Order cancellation and refund 
+ * 3) Order display and status rendering
+ * 4) Order-product checking logic. The class should be split into focused controllers for each use case.
+ * 
+ * Solution: 
+ * 1) Split into OrderApprovalController, OrderQueryController, OrderCancellationController, etc.
+ * 2) Each controller should handle only one use case.
+ */
 package controller;
 
 import java.util.ArrayList;

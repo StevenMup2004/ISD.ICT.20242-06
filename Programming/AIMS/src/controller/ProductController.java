@@ -1,4 +1,15 @@
 // Le Dai Lam - 20225982 - Add/Update product
+/* Cohesion Level: Communicational Cohesion
+ * 
+ * SRP Violation: Yes - Handles multiple concerns: 
+ * 1) Product data validation 
+ * 2) Business logic coordination (create/update) 
+ * 3) Error handling and routing. These concerns should be separated into different classes/services.
+ * 
+ * Solution: 
+ * 1) Extract a ProductValidationService.
+ * 2) Keep the controller focused only on calling services like ProductService.create() and update() after validation.
+ */
 package controller;
 
 import java.util.*;
