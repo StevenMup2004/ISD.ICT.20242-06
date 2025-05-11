@@ -1,4 +1,13 @@
 // src/model/OrderItem.java
+// Pham Thanh Nam 20225989 - Place Order
+/* Cohesion Level: Functional Cohesion - All methods and properties in this class are focused on 
+ * representing and managing a single order item.
+ * 
+ * SRP Violation: No - This class has a clear single responsibility of representing an order item
+ * and providing access to its properties and calculations directly related to the item.
+ * 
+ * Suggested Improvement (if any): None - The class follows SRP and has high cohesion.
+ */
 package model;
 
 import java.util.HashMap;
