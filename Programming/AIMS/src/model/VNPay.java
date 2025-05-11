@@ -1,3 +1,19 @@
+/*
+ * Class Purpose: Simulates interactions with the VNPay payment gateway, including processing payments and refunds.
+ * 
+ * Cohesion Level: Functional Cohesion
+ * 
+ * SRP Violation: No 
+ * Reason:
+ *   - All methods and data focus solely on the responsibility of communicating with the VNPay system.
+ *   - Exception classes are scoped to this class and directly support the communication functionality.
+ * 
+ * Recommendation:
+ *   - This class is cohesive and well-scoped for its purpose as a gateway adapter.
+ *   - In production, consider injecting `apiKey` and `gatewayUrl` via configuration (e.g., constructor or environment).
+ *   - If interaction logic becomes more complex (e.g., retry, logging, parsing responses), consider delegating to a `VNPayService`.
+ */
+
 package model;
 
 public class VNPay {

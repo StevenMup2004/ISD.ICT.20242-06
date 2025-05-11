@@ -1,3 +1,25 @@
+/*
+ * Class Purpose: Represents a customer's invoice, including price breakdowns, delivery fees, and status.
+ * 
+ * Cohesion Level: Logical Cohesion
+ * 
+ * SRP Violation: Yes
+ * Reason:
+ *   - This class mixes multiple responsibilities:
+ *     1. Business entity/data storage: holds invoice info (ID, date, subtotal, VAT, etc.)
+ *     2. Business logic: price calculation (`calculateSubtotal`, `calculateVAT`, etc.)
+ *     3. Persistence logic: `save()` simulates writing to a DB
+ *     4. Presentation logic: `generateInvoiceDetails()` prepares formatted data
+ * 
+ * Recommendation:
+ *   - Split responsibilities into dedicated classes:
+ *     1. Keep `Invoice` as a pure data model (POJO).
+ *     2. Move calculation logic to an `InvoiceCalculator` or `InvoiceService`.
+ *     3. Move `save()` to `InvoiceRepository`.
+ *     4. Optionally, separate formatting into an `InvoicePresenter` if complex.
+ */
+
+
 package model;
 
 

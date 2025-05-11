@@ -1,3 +1,22 @@
+/*
+ * Class Purpose: Represents a payment transaction in the AIMS system, including its creation, status update, and persistence behavior.
+ * 
+ * Cohesion Level: Logical Cohesion
+ * 
+ * SRP Violation: Yes
+ * Reason: This class handles multiple unrelated responsibilities:
+ *   - Business entity logic (storing transaction data: id, amount, date, status)
+ *   - Business rules (e.g., evaluatePaymentResult logic tied to VNPay)
+ *   - Persistence responsibilities (save, saveRefundTransaction)
+ * 
+ * Recommendation:   Split responsibilities:
+ *   - Keep this class as a pure data model (POJO) for transaction attributes.
+ *   - Move persistence logic (e.g., `save()`, `saveRefundTransaction`) to a `PaymentTransactionRepository` or `PersistenceService`.
+ *   - Move business logic (e.g., `evaluatePaymentResult`) to a separate `PaymentService`.
+ */
+
+
+
 package model;
 
 import java.util.Date;
