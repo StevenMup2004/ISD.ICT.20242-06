@@ -1,3 +1,16 @@
+// Bui Xuan Son - 20226065 - Manage User
+/*
+ * Cohesion Level: Communicational Cohesion
+ * 
+ * SRP Violation: Yes
+ * This controller handles multiple responsibilities including:
+ * - Database connection establishment
+ * - Cart retrieval functionality
+ * 
+ * Improvement:
+ * 1. Split database management fromt this class, build an utility class instead
+ */
+
 package repository;
 
 import java.util.List;
@@ -5,19 +18,22 @@ import java.util.List;
 import model.User;
 
 public class UserRepository {
-	private List<User> users;
-	public UserRepository(List<User> users) {
-		this.users = users;
-	}
-	public User getUserByUserID(int userID) {
-		User user = new User();
-		return user;
-	}
-	public void save(User user) {
-		users.add(user);
-	}
-	
-	public List<User> getAllUsers() {
-		return users;
-	}
+  private List<User> users;
+
+  public UserRepository(List<User> users) {
+    this.users = users;
+  }
+
+  public User getUserByUserID(int userID) {
+    User user = new User();
+    return user;
+  }
+
+  public void save(User user) {
+    users.add(user);
+  }
+
+  public List<User> getAllUsers() {
+    return users;
+  }
 }
