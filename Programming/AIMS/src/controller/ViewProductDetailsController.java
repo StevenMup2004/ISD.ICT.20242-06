@@ -1,0 +1,48 @@
+// Vu Hai Dang - 20225962 - UseCase View Product Details
+
+/*
+ * Cohesion Level: Functional Cohesion
+ * 
+ * SRP Violation: No
+ * This controller has good cohesion - all methods work together to accomplish 
+ * the single responsibility of retrieving and displaying product details.
+ * 
+ * Improvement: No significant improvements needed.
+ */
+
+package controller;
+
+
+import java.util.HashMap;
+import java.util.Map;
+import model.Product;
+
+
+
+public class ViewProductDetailsController {
+    private static Map<Integer, Product> productMap = new HashMap<>();
+
+    public Product requestToViewProductDetails(int productID) {
+        if (productID <= 0) return null;
+
+        Product product = getProduct(productID);
+        return product != null ? product : null;
+    }
+
+    
+    public Product renderProductDetails(int productID) {
+        Product product = requestToViewProductDetails(productID);
+        if (product == null) {
+            System.err.println("Product not found: " + productID);
+            return null;
+        }
+
+        System.out.println("Rendering details for product: " + product.getTitle());
+        return product;
+    }
+
+    
+    private Product getProduct(int productID) {
+        return productMap.get(productID);
+    }
+}
