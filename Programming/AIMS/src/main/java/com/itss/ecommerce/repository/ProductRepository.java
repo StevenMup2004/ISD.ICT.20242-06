@@ -50,5 +50,30 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("SELECT p FROM Product p WHERE p.quantity < :threshold")
     List<Product> findLowStockProducts(@Param("threshold") int threshold);
     
-  
+    /**
+     * Count products by type
+     */
+    @Query("SELECT COUNT(p) FROM Product p WHERE p.type = :type")
+    long countByType(@Param("type") String type);
+    
+    /**
+     * Find products ordered by price
+     */
+    List<Product> findAllByOrderByPriceAsc();
+    List<Product> findAllByOrderByPriceDesc();
+    
+    /**
+     * Search products by multiple criteria
+     */
+    @Query("SELECT p FROM Product p WHERE " +
+           "(:title IS NULL OR LOWER(p.title) LIKE LOWER(CONCAT('%', :title, '%'))) AND " +
+           "(:type IS NULL OR p.type = :type) AND " +
+           "(:minPrice IS NULL OR p.price >= :minPrice) AND " +
+           "(:maxPrice IS NULL OR p.price <= :maxPrice) AND " +
+           "(:inStock IS NULL OR (:inStock = true AND p.quantity > 0) OR (:inStock = false))")
+    List<Product> searchProducts(@Param("title") String title,
+                               @Param("type") String type,
+                               @Param("minPrice") Integer minPrice,
+                               @Param("maxPrice") Integer maxPrice,
+                               @Param("inStock") Boolean inStock);
 }
