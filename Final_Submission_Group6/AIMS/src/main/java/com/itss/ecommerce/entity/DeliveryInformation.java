@@ -26,27 +26,34 @@ public class DeliveryInformation {
     @Column(name = "email", nullable = false, length = 255)
     private String email;
     
-    @Column(name = "address", nullable = false, columnDefinition = "TEXT")
-    private String address;
-    
     @Column(name = "province", nullable = false, length = 100)
     private String province;
+
+    @Column(name = "district", nullable = false, length = 100)
+    private String district;
+
+    @Column(name = "ward", nullable = false, length = 100)
+    private String ward;
+    
+    @Column(name = "address", nullable = false, columnDefinition = "TEXT")
+    private String address;
     
     @Column(name = "delivery_message", columnDefinition = "TEXT")
     private String deliveryMessage;
     
     @Column(name = "delivery_fee")
     private Integer deliveryFee = 0;
-    
+
     /**
      * Create delivery information
      */
     public void createDeliveryInfo(String name, String phone, String email, 
-                                 String address, String province, String deliveryMessage) {
+                                 String address, String ward, String province, String deliveryMessage) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.ward = ward;
         this.province = province;
         this.deliveryMessage = deliveryMessage;
     }
@@ -55,7 +62,7 @@ public class DeliveryInformation {
      * Get full address for display
      */
     public String getFullAddress() {
-        return address + ", " + province;
+        return address + ", " + ward + ", " + province;
     }
     
     /**
@@ -66,6 +73,7 @@ public class DeliveryInformation {
                phone != null && !phone.trim().isEmpty() &&
                email != null && !email.trim().isEmpty() &&
                address != null && !address.trim().isEmpty() &&
+               ward != null && !ward.trim().isEmpty() &&
                province != null && !province.trim().isEmpty();
     }
     

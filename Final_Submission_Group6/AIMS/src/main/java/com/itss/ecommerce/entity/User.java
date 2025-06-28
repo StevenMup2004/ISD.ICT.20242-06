@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -33,8 +33,8 @@ public class User {
     
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
-    private UserRole role = UserRole.CUSTOMER;
-    
+    private UserRole role = UserRole.MANAGER;
+
     @Column(name = "registration_date")
     private LocalDateTime registrationDate;
     
@@ -52,7 +52,7 @@ public class User {
     }
     
     public enum UserRole {
-        ADMIN, CUSTOMER, MANAGER, EMPLOYEE
+        ADMIN, MANAGER
     }
     
     /**
@@ -67,6 +67,10 @@ public class User {
      */
     public boolean canManageProducts() {
         return role == UserRole.ADMIN || role == UserRole.MANAGER;
+    }
+    
+    public boolean canManageUsers() {
+        return role == UserRole.ADMIN;
     }
     
     /**

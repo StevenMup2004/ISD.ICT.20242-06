@@ -1,10 +1,11 @@
 package com.itss.ecommerce.repository;
 
-import com.itss.ecommerce.entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import com.itss.ecommerce.entity.Order;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -39,7 +40,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     /**
      * Find orders with rush delivery
      */
-    @Query("SELECT DISTINCT o FROM Order o JOIN o.orderLines ol WHERE ol.rushOrder = true")
+    @Query("SELECT DISTINCT o FROM Order o JOIN o.orderItems ol WHERE ol.rushOrder = true")
     List<Order> findOrdersWithRushDelivery();
     
     /**
@@ -68,7 +69,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     /**
      * Find orders by delivery province
      */
-    @Query("SELECT o FROM Order o WHERE o.deliveryInfo.province = :province")
+    @Query("SELECT o FROM Order o WHERE o.deliveryInformation.province = :province")
     List<Order> findOrdersByDeliveryProvince(@Param("province") String province);
     
     /**
@@ -91,6 +92,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     /**
      * Find orders by customer email (through delivery info)
      */
-    @Query("SELECT o FROM Order o WHERE o.deliveryInfo.email = :email")
+    @Query("SELECT o FROM Order o WHERE o.deliveryInformation.email = :email")
     List<Order> findOrdersByCustomerEmail(@Param("email") String email);
 }

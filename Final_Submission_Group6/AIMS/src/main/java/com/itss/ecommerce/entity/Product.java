@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "products")
+@Table(name = "product")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
@@ -33,14 +33,8 @@ public abstract class Product {
     @Column(name = "title", nullable = false, length = 255)
     private String title;
     
-    @Column(name = "category", nullable = false)
-    private String category;
-    
     @Column(name = "price", nullable = false)
     private Integer price;
-    
-    @Column(name = "product_value", nullable = false)
-    private Integer productValue; // Used for price validation (30%-150% of this value)
     
     @Column(name = "weight")
     private Float weight;
@@ -72,7 +66,7 @@ public abstract class Product {
     
     @Column(name = "type", insertable = false, updatable = false)
     private String type;
-    
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
     
@@ -128,15 +122,4 @@ public abstract class Product {
         return price * requestedQuantity;
     }
     
-    /**
-     * Helper method to validate price against product value
-     */
-    public boolean isPriceValid() {
-        if (productValue == null || price == null) {
-            return false;
-        }
-        double minPrice = productValue * 0.3;
-        double maxPrice = productValue * 1.5;
-        return price >= minPrice && price <= maxPrice;
-    }
 }
