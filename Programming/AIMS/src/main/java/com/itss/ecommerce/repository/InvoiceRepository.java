@@ -1,10 +1,11 @@
 package com.itss.ecommerce.repository;
 
-import com.itss.ecommerce.entity.Invoice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import com.itss.ecommerce.entity.Invoice;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -40,11 +41,6 @@ public interface InvoiceRepository extends JpaRepository<Invoice, Long> {
      */
     @Query("SELECT i FROM Invoice i WHERE i.paymentStatus = 'FAILED'")
     List<Invoice> findFailedInvoices();
-    
-    /**
-     * Find invoices by transaction ID
-     */
-    Optional<Invoice> findByTransactionId(String transactionId);
     
     /**
      * Find invoices by payment method

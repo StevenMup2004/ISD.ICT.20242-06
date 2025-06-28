@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "order_items")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,9 +31,9 @@ public class Order {
     @Column(name = "status")
     private OrderStatus status = OrderStatus.PENDING;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "delivery_id")
-    private DeliveryInformation deliveryInfo;
+    private DeliveryInformation deliveryInformation;
     
     @Column(name = "vat_percentage")
     private Integer vatPercentage = 10;
@@ -45,11 +45,11 @@ public class Order {
     private LocalDateTime updatedAt;
     
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<OrderLine> orderLines = new ArrayList<>();
+    private List<OrderItem> orderItems = new ArrayList<>();
     
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Invoice invoice;
-    
+
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
@@ -68,18 +68,18 @@ public class Order {
     /**
      * Add order line to this order
      */
-    public void addOrderLine(OrderLine orderLine) {
-        orderLines.add(orderLine);
-        orderLine.setOrder(this);
+    public void addOrderItem(OrderItem orderItem) {
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
         recalculateTotals();
     }
     
     /**
      * Remove order line from this order
      */
-    public void removeOrderLine(OrderLine orderLine) {
-        orderLines.remove(orderLine);
-        orderLine.setOrder(null);
+    public void removeOrderItem(OrderItem orderItem) {
+        orderItems.remove(orderItem);
+        orderItem.setOrder(null);
         recalculateTotals();
     }
     
@@ -87,8 +87,8 @@ public class Order {
      * Recalculate order totals based on order lines
      */
     public void recalculateTotals() {
-        totalBeforeVat = orderLines.stream()
-                .mapToInt(OrderLine::getTotalFee)
+        totalBeforeVat = orderItems.stream()
+                .mapToInt(OrderItem::getTotalFee)
                 .sum();
         
         totalAfterVat = totalBeforeVat + (totalBeforeVat * vatPercentage / 100);
@@ -125,8 +125,8 @@ public class Order {
      * Get total number of items in order
      */
     public int getTotalItemCount() {
-        return orderLines.stream()
-                .mapToInt(OrderLine::getQuantity)
+        return orderItems.stream()
+                .mapToInt(OrderItem::getQuantity)
                 .sum();
     }
     
@@ -134,7 +134,7 @@ public class Order {
      * Check if order has rush delivery items
      */
     public boolean hasRushItems() {
-        return orderLines.stream()
-                .anyMatch(OrderLine::isRushOrder);
+        return orderItems.stream()
+                .anyMatch(OrderItem::isRushOrder);
     }
 }
