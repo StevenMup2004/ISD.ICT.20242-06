@@ -12,7 +12,6 @@ import {
   Edit,
   Trash2,
   Search,
-  Filter,
   CheckCircle,
   X,
   Lock,
@@ -26,6 +25,7 @@ import { productApi, orderApi, userApi } from '../services/api';
 import { ProductModal } from '../components/modals/ProductModal';
 import { OrderModal } from '../components/modals/OrderModal';
 import { UserModal } from '../components/modals/UserModal';
+import { Product, Order, User } from '../types/api';
 
 const AdminDashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'overview' | 'products' | 'orders' | 'users'>('overview');
@@ -33,16 +33,16 @@ const AdminDashboard: React.FC = () => {
   const [modalState, setModalState] = useState<{
     isOpen: boolean;
     mode: 'create' | 'edit' | 'view';
-    product?: any;
+    product?: Product;
   }>({ isOpen: false, mode: 'create' });
   const [orderModalState, setOrderModalState] = useState<{
     isOpen: boolean;
-    order?: any;
+    order?: Order;
   }>({ isOpen: false });
   const [userModalState, setUserModalState] = useState<{
     isOpen: boolean;
     mode: 'create' | 'edit' | 'view';
-    user?: any;
+    user?: User;
   }>({ isOpen: false, mode: 'create' });
   const { user } = useAuthStore();
 
@@ -741,7 +741,7 @@ const AdminDashboard: React.FC = () => {
       <ProductModal
         isOpen={modalState.isOpen}
         mode={modalState.mode}
-        initialData={modalState.product}
+        initialData={modalState.product ?? null}
         onClose={() => setModalState({ isOpen: false, mode: 'create' })}
         onSubmit={async (data) => {
           try {
@@ -759,7 +759,7 @@ const AdminDashboard: React.FC = () => {
       
       <OrderModal
         isOpen={orderModalState.isOpen}
-        order={orderModalState.order}
+        order={orderModalState.order ?? null}
         onClose={() => setOrderModalState({ isOpen: false })}
         onConfirmOrder={handleConfirmOrder}
         onCancelOrder={handleCancelOrder}
@@ -768,7 +768,7 @@ const AdminDashboard: React.FC = () => {
       <UserModal
         isOpen={userModalState.isOpen}
         mode={userModalState.mode}
-        initialData={userModalState.user}
+        initialData={userModalState.user ?? null}
         onClose={() => setUserModalState({ isOpen: false, mode: 'create' })}
         onSubmit={async (data) => {
           try {

@@ -26,15 +26,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 
 @CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/api/payment")
 @Controller
 public class VNPayController {
 
-    private static final Logger logger = LoggerFactory.getLogger(VNPayController.class);
+    //private static final Logger logger = LoggerFactory.getLogger(VNPayController.class);
     private final VNPayService vnPayService;
     private final EmailService emailService;
     private final OrderService orderService;
