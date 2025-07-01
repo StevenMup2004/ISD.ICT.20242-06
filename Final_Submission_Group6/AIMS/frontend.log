@@ -2,9 +2,8 @@
 > frontend@0.0.0 dev
 > vite
 
-6:04:12 PM [vite] (client) Re-optimizing dependencies because vite config has changed
 
-  VITE v7.0.0  ready in 450 ms
+  VITE v7.0.0  ready in 689 ms
 
   ➜  Local:   http://localhost:5173/
   ➜  Network: use --host to expose
