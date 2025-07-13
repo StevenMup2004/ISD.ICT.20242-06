@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, AlertCircle } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
@@ -12,6 +12,7 @@ import { LoginRequest } from '../types/api';
 const LoginPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [loginError, setLoginError] = useState<string>('');
   const { login } = useAuthStore();
   const navigate = useNavigate();
   const location = useLocation();
@@ -27,11 +28,13 @@ const LoginPage: React.FC = () => {
 
   const onSubmit = async (data: LoginRequest) => {
     setIsLoading(true);
+    setLoginError('');
     try {
       await login(data);
       navigate(from, { replace: true });
     } catch (error) {
       console.error('Login failed:', error);
+      setLoginError('Invalid email or password. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -122,6 +125,13 @@ const LoginPage: React.FC = () => {
                   </FormItem>
                 )}
               />
+
+              {loginError && (
+                <div className="flex items-center gap-2 text-red-600 text-sm bg-red-50 p-3 rounded-md border border-red-200">
+                  <AlertCircle className="h-4 w-4 flex-shrink-0" />
+                  <span>{loginError}</span>
+                </div>
+              )}
 
               <Button
                 type="submit"

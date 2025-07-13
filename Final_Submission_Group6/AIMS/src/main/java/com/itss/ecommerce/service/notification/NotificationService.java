@@ -5,6 +5,9 @@ import com.itss.ecommerce.service.notification.type.Notification;
 import com.itss.ecommerce.service.notification.type.NotificationServiceProvider;
 import com.itss.ecommerce.service.notification.type.NotificationType;
 import com.itss.ecommerce.service.notification.utils.NotificationMessageBuilder;
+
+import lombok.AllArgsConstructor;
+
 import com.itss.ecommerce.entity.Order;
 import com.itss.ecommerce.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
+//@AllArgsConstructor
 public class NotificationService implements INotificationService {
 
     private final Map<NotificationServiceProvider, INotificationStrategy> providers;
